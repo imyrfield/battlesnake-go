@@ -2,26 +2,29 @@ package main
 
 import (
 	"log"
-	"math/rand"
 	"net/http"
-	"time"
+	"io"
 )
+
+func Hello(res http.ResponseWriter, req *http.Request) {
+	io.WriteString(res, "Oh, hai there!")
+}
 
 func Start(res http.ResponseWriter, req *http.Request) {
 	log.Print("START REQUEST")
 
-	data, err := NewStartRequest(req)
-	if err != nil {
-		log.Printf("Bad start request: %v", err)
-	}
-	dump(data)
+	//data, err := NewStartRequest(req)
+	//if err != nil {
+	//	log.Printf("Bad start request: %v", err)
+	//}
+	//dump(data)
 
 	respond(res, StartResponse{
-		Taunt:          "battlesnake-go!",
+		Taunt:          "Tssssssssss!",
 		Color:          "#75CEDD",
-		Name:           "battlesnake-go",
-		HeadType:       HEAD_PIXEL,
-		TailType:       TAIL_ROUND_BUM,
+		HeadURL:        "https://forums.androidcentral.com/images/forum_icons/200.png",
+		HeadType:       HEAD_TONGUE,
+		TailType:       TAIL_FRECKLED,
 		SecondaryColor: "#F7D3A2",
 	})
 }
@@ -34,18 +37,14 @@ func Move(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		log.Printf("Bad move request: %v", err)
 	}
-	dump(data)
-
-	directions := []string{
-		"up",
-		"down",
-		"left",
-		"right",
-	}
-
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	//dump(data)
 
 	respond(res, MoveResponse{
-		Move: directions[r.Intn(4)],
+		Move: getMove(data),
 	})
+}
+
+func End(res http.ResponseWriter, req *http.Request) {
+	res.WriteHeader(http.StatusOK)
+	res.Write([]byte("200 - Game Over :("))
 }

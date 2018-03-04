@@ -7,6 +7,8 @@ import (
 
 type StartRequest struct {
 	GameID int `json:"game_id"`
+	Width int `json:"width"`
+	Height int `json:"height"`
 }
 
 func NewStartRequest(req *http.Request) (*StartRequest, error) {
@@ -17,7 +19,6 @@ func NewStartRequest(req *http.Request) (*StartRequest, error) {
 
 type StartResponse struct {
 	Color          string   `json:"color,omitempty"`
-	Name           string   `json:"name,omitempty"`
 	HeadURL        string   `json:"head_url,omitempty"`
 	Taunt          string   `json:"taunt,omitempty"`
 	HeadType       HeadType `json:"head_type,omitempty"`
@@ -55,6 +56,8 @@ type Snake struct {
 }
 
 func (snake Snake) Head() Point { return snake.Body[0] }
+
+func (snake Snake) Tail() Point { return snake.Body[len(snake.Body) - 1] }
 
 type Point struct {
 	X int `json:"x"`
