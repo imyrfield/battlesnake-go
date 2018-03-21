@@ -1,14 +1,18 @@
 ## battlesnake-go
 
-A simple [BattleSnake AI](http://battlesnake.io) written in Go.
+A simple [BattleSnake AI](http://battlesnake.io) written in Go. This was my first year participating in the competition, and the snake did moderately well (I got to the finals of the Beginner category).  
+
+The main issue with the snake currently, is that it doesn't check to make sure a route has a viable exit, before choosing it as it's target.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+## Setup Instructions
 
 Visit [battlesnake.io/readme](http://battlesnake.io/readme) for API documentation and instructions for running your AI.
 
 To get started, you'll need:
   1. A working Go development environment ([guide](https://golang.org/doc/install)).
   2. Read [Heroku's guide to deploying Go apps](https://devcenter.heroku.com/articles/getting-started-with-go#introduction)
-
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ### Running the AI locally
 
@@ -50,13 +54,3 @@ git push heroku master
 ```
 heroku open
 ```
-Or go directly via http://APP_NAME.herokuapp.com
-
-4) View/stream server logs.
-```
-heroku logs --tail
-```
-
-### Questions?
-
-[Email](mailto:battlesnake@sendwithus.com), [Twitter](http://twitter.com/send_with_us)
